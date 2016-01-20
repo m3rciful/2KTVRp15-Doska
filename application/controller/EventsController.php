@@ -65,6 +65,23 @@ class EventsController extends RenderTemplate
 		$model->lock_event($id, $flag);
 		header('Location: ./admin');
 	}
+	// Изменить событие
+	function edit_action($id)
+	{
+		$model = new EventsModel();
+		if (isset($_POST['save']))
+		{
+			$model->edit_event($id);
+			echo 'OK';
+		}
+		else
+		{
+			$event = $model ->get_event($id);
+			$html = $this->render_template('application/view/templates/edit_event.php', array('event' => $event));
+			return $html;
+		}
+		//header('Location: ./admin');
+	}
 	// ОШИБКА 404
 	function error_404()
 	{

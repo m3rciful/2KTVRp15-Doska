@@ -14,10 +14,10 @@ if ($uri == '' OR $uri == 'index.php')
 }
 elseif ($uri == 'pupils' AND isset($_REQUEST["event"]))
 {
-	if (empty($_REQUEST['sort_by'])) $_REQUEST['sort_by'] = 'id';
+	if (empty($_REQUEST['order_by'])) $_REQUEST['order_by'] = 'id';
 	// Список зарег. пользователей
 	$control = new UsersController();
-	$response = $control->plist_action($_REQUEST["event"], $_REQUEST['sort_by']);
+	$response = $control->plist_action($_REQUEST["event"], $_REQUEST['order_by']);
 }
 // ------ ВХОД -----------------------------------------------
 elseif ($uri == 'login')
@@ -56,6 +56,12 @@ elseif ($uri == 'event' AND $access_granted AND isset($_REQUEST["lock"]))
 	// Открытие/закрытие мероприятия
 	$control = new EventsController();
 	$response = $control->lock_action($_REQUEST['lock'], $_REQUEST['flag']);
+}
+elseif ($uri == 'event' AND $access_granted AND isset($_REQUEST["edit"]))
+{
+	// Изменить мероприятие
+	$control = new EventsController();
+	$response = $control->edit_action($_REQUEST['edit']);
 }
 // -----------------------------------------------------------
 elseif ($uri == 'event' AND isset($_REQUEST["show"]))

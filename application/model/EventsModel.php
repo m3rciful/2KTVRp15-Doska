@@ -77,5 +77,38 @@ class EventsModel extends DBH // Наследование
 		$stmt->execute(array($flag, $id));
 		return true;
 	}
+	// ДОБАВЛЕНИЕ ИЗМЕНЕНИЯ В ТАБЛИЦУ 'EVENTS'
+	public function edit_event($id)
+	{
+		if (empty($_REQUEST['name_event']) OR empty($_REQUEST['description']) 
+			OR empty($_REQUEST['short_desc']) OR empty($_REQUEST['sponsor']) 
+			OR empty($_REQUEST['date']) OR empty($_REQUEST['time_start']) 
+			OR empty($_REQUEST['time_stop']))
+		{
+			return false;
+		}
+		else
+		{
+			$name 			= $_REQUEST['name_event'];
+			$desc 			= $_REQUEST['description'];
+			$short_desc 	= $_REQUEST['short_desc'];
+			$sponsor 		= $_REQUEST['sponsor'];
+			$date 			= explode('/', $_REQUEST['date']); 
+			$mysql_date 	= $date[2].'-'.$date[1].'-'.$date[0];
+			$start 			= $_REQUEST['time_start'];
+			$stop 			= $_REQUEST['time_stop'];
+			$logo 			= $_REQUEST['image_logo'];
+			$flag 			= $_REQUEST['flag'];
+	
+			
+			$sql = 'UPDATE events SET (name_eventR, short_desc_eventR, description_eventR, 
+						sponsor_event, date_event, time_start, time_stop, image_logo, flag) 
+					VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) WHERE id=?';
+			$stmt = $this->getDBH()->prepare($sql);
+			$stmt->execute(array($name, $short_desc, $desc, $sponsor, $mysql_date, $start, $stop, $logo, $flag, $id));
+			
+			return true;
+		}
+	}
 }
 ?>

@@ -44,18 +44,21 @@ class UsersModel extends DBH // Наследование
 		$stmt->execute(array($name, $email, $org, $group, $class, $id));
 	}
 	// СПИСОК ПОЛЬЗОВАТЕЛЕЙ
-	public function get_pupils($id, $sort_by)
+	public function get_pupils($id, $order)
 	{
-		switch ($sort_by)
+		switch ($order)
 		{
-			case 'id': $sort = 5;
-			break;
+			case "id": 		$order_by = 1; break;
+			case "name": 	$order_by = 2; break;
+			case "email": 	$order_by = 3; break;
+			case "org": 	$order_by = 4; break;
+			case "group": 	$order_by = 5; break;
+			case "class": 	$order_by = 6; break;
 		}
 
-		$sql = 'SELECT * FROM pupils WHERE id_events=? ORDER BY ? ASC';
-
+		$sql = 'SELECT * FROM pupils WHERE id_events=? ORDER BY ' .$order_by .' ASC';
 		$stmt = $this->getDBH()->prepare($sql);
-		$stmt->execute(array($id, $sort));
+		$stmt->execute([$id]);
 
 		$pupils = array();
 		while ($row =$stmt-> fetch())

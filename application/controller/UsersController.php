@@ -23,10 +23,10 @@ class UsersController extends RenderTemplate
 		return $html;
 	}
 	// Список подписчиков
-	function plist_action($id, $sort_by)
+	function plist_action($id, $order)
 	{
 		$model = new UsersModel();
-		$pupils = $model ->get_pupils($id, $sort_by);
+		$pupils = $model ->get_pupils($id, $order);
 		$html = $this->render_template('application/view/templates/pupils.php', array('pupils' => $pupils));
 		return $html;
 	}

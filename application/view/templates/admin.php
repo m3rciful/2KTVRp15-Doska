@@ -37,7 +37,7 @@
 	  			<div class="col-xs-6 col-md-4">
 	  			<form method="POST">
 	  				<div class="btn-group btn-group-sm pull-right" role="group" aria-label="...">
-	  					<button type="button" class="btn btn-default" title="Изменить" name="edit"><i class="fa fa-pencil"></i></button>
+	  					<a class="btn btn-default" href="event?edit=<?php echo $event['id_event'];?>" role="button" title="Изменить"><i class="fa fa-pencil"></i></a>
 	  					<a class="btn btn-default" href="event?remove=<?php echo $event['id_event'];?>" role="button" title="Удалить"><i class="fa fa-trash"></i></a>
 	  					<?php if($event['flag'] == 0)
 	  							$btn = 'btn-danger';
