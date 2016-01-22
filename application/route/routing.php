@@ -61,7 +61,7 @@ elseif ($uri == 'event' AND $access_granted AND isset($_REQUEST["edit"]))
 {
 	// Изменить мероприятие
 	$control = new EventsController();
-	$response = $control->edit_action($_REQUEST['edit']);
+	$response = $control->edit_action($_REQUEST["edit"]);
 }
 // -----------------------------------------------------------
 elseif ($uri == 'event' AND isset($_REQUEST["show"]))

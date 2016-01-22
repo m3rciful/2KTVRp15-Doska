@@ -18,7 +18,7 @@
   		 <small><?php echo $event['sponsor_event'];?></small></h2>
   		<p><?php echo $event['description_eventR'];?></p>
   		<hr>
-  		<p>Мероприятия состоится: <b><?php echo $event['date_event'];?></b> - с <?php echo $event['time_start'];?> до <?php echo $event['time_stop'];?></p>
+  		<p>Мероприятия состоится: <b><?php echo date('d.m.Y', strtotime ($event['date_event']));?></b> - с <?php echo date('H:i', strtotime ($event['time_start']));?> до <?php echo date('H:i', strtotime ($event['time_stop']));?></p>
   	</div>
 </div>
 
