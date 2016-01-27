@@ -32,6 +32,12 @@ class UsersModel extends DBH // Наследование
 	// ПОДПИСКА НА СОБЫТИЕ
 	public function subscribe_to($id)
 	{
+		if (empty($_REQUEST['name']) OR empty($_REQUEST['email']) 
+			OR empty($_REQUEST['organisation']))
+		{
+			return false;
+		}
+
 		$name 	= $_REQUEST['name'];
 		$email	= $_REQUEST['email'];
 		$org 	= $_REQUEST['organisation'];
@@ -42,6 +48,8 @@ class UsersModel extends DBH // Наследование
 				VALUES (?, ?, ?, ?, ?, ?)';
 		$stmt = $this->getDBH()->prepare($sql);
 		$stmt->execute(array($name, $email, $org, $group, $class, $id));
+		
+		return true;
 	}
 	// СПИСОК ПОЛЬЗОВАТЕЛЕЙ
 	public function get_pupils($id, $order)

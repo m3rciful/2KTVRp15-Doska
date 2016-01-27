@@ -14,22 +14,22 @@ class EventsController extends RenderTemplate
 	{
 		$model = new EventsModel();
 		$event = $model ->get_event($id);
-	
-		if (isset($_POST['reg_but'])) // Кнопка регистрации
-		{
-			$html = $this->render_template('application/view/templates/reg_user.php', array('event' => $event));
-		}
-		elseif (isset($_POST['subscribe'])) // Подписаться
+
+		
+		if (isset($_POST['subscribe'])) // Регистрация
 		{
 			$model = new UsersModel();
-			$model->subscribe_to($id);
-			header('Location: ./pupils?event='.$id);
-			exit;
+			$result = $model->subscribe_to($id);
+
+			if ($result)
+			{
+				header('Location: ./pupils?event='.$id);
+				exit;
+			}
 		}
-		else
-		{
-	 		$html = $this->render_template('application/view/templates/show.php', array('event' => $event));
-		}
+		
+
+		$html = $this->render_template('application/view/templates/show.php', array('event' => $event));
 		return $html;
 	}
 	// Добавлеие нового события
