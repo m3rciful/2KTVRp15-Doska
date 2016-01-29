@@ -8,7 +8,7 @@
 	<p class="text-center">
 		<img class="img-circle " src="public/images/<?php echo $event['image_logo']; ?>" alt="Event Logo" title="<?php echo $event['short_desc_eventR'];?>" width="160" height="160"><br><br>
 		<form method="POST" class="text-center">
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registration">Регистрация <i class="fa fa-user-plus"></i></button><br><br>
+			<button type="button" class="btn btn-primary" data-backdrop="static" data-toggle="modal" data-target="#registration">Регистрация <i class="fa fa-user-plus"></i></button><br><br>
 			<a href="pupils?event=<?php echo $event['id_event']; ?>" role="button">Статистика </a>
 		</form>
 	</p>
